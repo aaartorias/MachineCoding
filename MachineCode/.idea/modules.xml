@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/MachineCode.iml" filepath="$PROJECT_DIR$/MachineCode.iml" />
       <module fileurl="file://$PROJECT_DIR$/ParkingLot/ParkingLot.iml" filepath="$PROJECT_DIR$/ParkingLot/ParkingLot.iml" />
       <module fileurl="file://$PROJECT_DIR$/RideSharing/RideSharing.iml" filepath="$PROJECT_DIR$/RideSharing/RideSharing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RideSharing/RideSharingadf.iml" filepath="$PROJECT_DIR$/RideSharing/RideSharingadf.iml" />
     </modules>
   </component>
 </project>
