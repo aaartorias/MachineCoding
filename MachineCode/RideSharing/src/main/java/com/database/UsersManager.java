@@ -2,8 +2,10 @@ package main.java.com.database;
 
 import main.java.com.exceptions.DriverAlreadyExistsException;
 import main.java.com.exceptions.DriverNotFoundException;
+import main.java.com.exceptions.UserAlreadyExistsException;
 import main.java.com.model.User;
 
+import java.util.Collection;
 import java.util.HashMap;
 
 public class UsersManager {
@@ -13,11 +15,11 @@ public class UsersManager {
         users = new HashMap<>();
     }
 
-    public void addUser(User driver) throws DriverAlreadyExistsException {
-        if (users.containsKey(driver.getName())) {
-            throw new DriverAlreadyExistsException();
+    public void addUser(User user) throws UserAlreadyExistsException {
+        if (users.containsKey(user.getName())) {
+            throw new UserAlreadyExistsException();
         }
-        users.put(driver.getName(),driver);
+        users.put(user.getName(),user);
     }
 
     public HashMap<String, User> getUser() {
@@ -29,6 +31,10 @@ public class UsersManager {
             throw new DriverNotFoundException();
         }
         return users.get(name);
+    }
+
+    public Collection<User> getAllUsers() {
+        return users.values();
     }
 
 }

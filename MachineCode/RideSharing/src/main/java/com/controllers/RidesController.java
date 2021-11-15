@@ -6,6 +6,8 @@ import main.java.com.model.Ride;
 import main.java.com.model.User;
 import main.java.com.model.Vehicle;
 
+import java.util.ArrayList;
+
 public class RidesController {
     private UsersManager usersManager;
     private RidersManager ridersManager;
@@ -26,20 +28,25 @@ public class RidesController {
     public void createRide(String name, String origin, int availableSeats
             ,String vehicleName, String vehicleLicense, String destination)
             throws VehicleNotFoundException, DriverNotFoundException, RiderAlreadyExistsException,
-            RideAlreadyExistsForDriverException, DriverAlreadyExistsException {
+            RideAlreadyExistsForVehicleException, DriverAlreadyExistsException {
 
-        if (driversManager.driverExists(name)) {
-            throw new RideAlreadyExistsForDriverException();
-        }
+        // need to find ride for the vehicle
         User driver =  usersManager.getUser(name);
+        if (ridesManager.hasRideForVehicle(vehicleLicense)) {
+            throw new RideAlreadyExistsForVehicleException();
+        }
         Vehicle vehicle = vehiclesManager.getVehicle(vehicleLicense);
         Ride ride = new Ride(origin, destination, driver,vehicle, availableSeats);
         ridesManager.addRide(ride);
-        driversManager.addDriver(driver);
+        try {
+            driversManager.addDriver(driver);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
         driver.addRidesOffered();
     }
 
-    public void selectRide(String name, String origin
+    public void matchRide(String name, String origin
             ,String destination, int seatsRequested, String preferredVehicle)
             throws RiderAlreadyExistsException, RideNotAvailableException,
             NoRidesAvailableException, DriverNotFoundException {
@@ -67,7 +74,7 @@ public class RidesController {
         ridersManager.addRider(rider);
     }
 
-    public void selectRide(String name, String origin
+    public void matchRide(String name, String origin
             ,String destination, int seatsRequested)
             throws NoRidesAvailableException, DriverNotFoundException, RiderAlreadyExistsException
             ,RideNotAvailableException {
@@ -101,9 +108,25 @@ public class RidesController {
         ride.startTrip();
     }
 
-    public void endRide(Ride ride) {
+    public void endRide(Integer rideId) throws NoRidersFound, RideNotFoundException {
+        Ride ride = ridesManager.getRide(rideId);
         ride.endTrip();
-        ridersManager.removeRiders(ride.getRiders());
+        ArrayList<User> riders = ride.getRiders();
+        if (riders == null) {
+            throw new NoRidersFound();
+        }
+        ridersManager.removeRiders(riders);
     }
 
+    public void endAllRides() {
+        //ridesManager.getRides().stream().forEach( x -> {
+        try {
+            for (Integer ride : ridesManager.getRides()) {
+                endRide(ride);
+            }
+        } catch (RideNotFoundException | NoRidersFound e) {
+            System.out.println(e);
+            //.printStackTrace()
+        }
+    }
 }

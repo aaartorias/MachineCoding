@@ -5,6 +5,7 @@ import main.java.com.exceptions.RideNotFoundException;
 import main.java.com.exceptions.RiderAlreadyExistsException;
 import main.java.com.model.Ride;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
@@ -33,7 +34,7 @@ public class RidesManager {
         if (isEmpty()) {
             throw new RideNotAvailableException();
         }
-        Collection<Ride> availableRides = null;
+        Collection<Ride> availableRides = new ArrayList<>();
         for (Ride ride: rides.values()) {
             if (ride.isAvailable()) {
                 availableRides.add(ride);
@@ -46,4 +47,17 @@ public class RidesManager {
         return rides.size() == 0 ;
     }
 
+    public Collection<Integer> getRides() {
+        return rides.keySet();
+    }
+
+
+    public boolean hasRideForVehicle(String vehicleLicense) {
+        for (Ride ride: rides.values()) {
+            if (ride.getVehicle().getLicense() == vehicleLicense) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

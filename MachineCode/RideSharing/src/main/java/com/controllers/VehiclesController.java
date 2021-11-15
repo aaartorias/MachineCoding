@@ -11,15 +11,11 @@ import main.java.com.model.Vehicle;
 
 public class VehiclesController {
     private VehicleManager vehicleManager;
-    private RidersManager ridersManager;
-    private DriversManager driversManager;
     private UsersManager usersManager;
 
 
-    public VehiclesController(VehicleManager vehicleManager, RidersManager ridersManager, UsersManager usersManager) {
+    public VehiclesController(VehicleManager vehicleManager, UsersManager usersManager) {
         this.vehicleManager = vehicleManager;
-        this.ridersManager = ridersManager;
-        this.driversManager = driversManager;
         this.usersManager = usersManager;
     }
 

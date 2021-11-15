@@ -7,9 +7,9 @@ import main.java.com.model.Vehicle;
 import java.util.HashMap;
 
 public class VehicleManager {
-    HashMap<String, Vehicle> vehicles;
+    private HashMap<String, Vehicle> vehicles;
 
-    VehicleManager() {
+    public VehicleManager() {
         vehicles = new HashMap<>();
     }
 
@@ -31,6 +31,12 @@ public class VehicleManager {
         if (vehicles.containsKey(license)) {
             return true;
         }
+        return false;
+    }
+
+    public boolean hasVehicle(String vehicleLicense) {
+        if (vehicles.containsKey(vehicleLicense))
+            return true;
         return false;
     }
 }
