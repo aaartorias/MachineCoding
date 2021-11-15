@@ -1,4 +1,10 @@
-package main.interfaces;
+package main.interfaces.repository;
 
-public interface IStore {
+import java.util.Collection;
+
+public interface IStore<K,V> {
+    void add(K key, V value);
+    V get(K key);
+    void deleteKey(K key);
+    Collection<V> list();
 }

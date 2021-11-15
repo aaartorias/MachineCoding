@@ -1,21 +1,27 @@
-package Model;
+package main.Model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ParkingLot {
-    private HashMap<Integer, Floor> floors; // TODO: replace map with arraylist
+    private ArrayList<Floor> floors;
+    private Integer id;
+    //private static Integer counter = 0;
 
-    public ParkingLot() {
-        floors = new HashMap<>();
+    public ParkingLot(Integer id) {
+        id = id;
+        floors = new ArrayList<>();
     }
 
-    public HashMap<Integer, Floor> getFloors() {
+    public ArrayList<Floor> getFloors() {
         return floors;
     }
 
-    public void addFloors(Integer floorId) {
-        Floor newFloor = new Floor(floorId);
-        floors.put(floorId,newFloor);
+    public Integer getId() {
+        return id;
+    }
+
+    public void addFloor(Floor floor) {
+        floors.add(floor);
     }
 }

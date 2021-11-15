@@ -1,26 +1,22 @@
-package Model;
-
-enum VehicleType {
-    CAR,
-    BIKE,
-    TRUCK
-}
+package main.Model;
 
 public class Vehicle {
     private String license;
-    private VehicleType vehicleType;
+    private Size size;
+    private String color;
 
-    public Vehicle(String license, VehicleType vehicleType) {
+    public Vehicle(Size Size, String license, String color) {
+        this.size = size;
         this.license = license;
-        this.vehicleType = vehicleType;
+        this.color = color;
     }
 
     public String getLicense() {
         return license;
     }
 
-    public VehicleType getVehicleType() {
-        return vehicleType;
+    public Size getVehicleType() {
+        return size;
     }
 
 

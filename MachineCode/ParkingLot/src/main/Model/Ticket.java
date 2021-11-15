@@ -1,4 +1,4 @@
-package Model;
+package main.Model;
 
 enum Status {
     NEW,
@@ -10,10 +10,12 @@ public class Ticket {
     private Integer id;
     private Status status;
     private static Integer counter = 0;
+    private Spot spot;
+    private Vehicle vehicle;
 
     public Ticket() {
         status = Status.NEW;
-        this.id = counter++;
+        this.id = ++counter;
     }
 
     public Integer getId() {
@@ -24,11 +26,27 @@ public class Ticket {
         return status;
     }
 
-    public void ticketAssigned() {
+    public void assign() {
         status = Status.ASSIGNED;
     }
 
-    public void ticketCollected() {
+    public void collect() {
         status = Status.COLLECTED;
+    }
+
+    public Spot getSpot() {
+        return spot;
+    }
+
+    public void setSpot(Spot spot) {
+        this.spot = spot;
+    }
+
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 }

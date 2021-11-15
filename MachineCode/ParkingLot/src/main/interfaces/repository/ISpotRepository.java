@@ -1,8 +1,9 @@
 package main.interfaces.repository;
 
+import main.Model.Floor;
 import main.Model.Spot;
 
-public interface ISpot {
+public interface ISpotRepository {
     Spot addSpot();
-    Spot getSpot();
+    Spot getSpot(Integer spotId);
 }

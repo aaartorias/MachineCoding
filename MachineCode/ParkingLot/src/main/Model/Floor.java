@@ -1,16 +1,23 @@
-package Model;
+package main.Model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Floor {
-    private Integer floorId;
-    private HashMap<Integer, Spot> spots;
-    public Floor(int floorId) {
-        this.floorId = floorId;
-        spots = new HashMap<>();
+    private  Integer id;
+    private static Integer counter = 0;
+    private ArrayList<Spot> spots;
+    int capacity;
+
+    public Floor() {
+        this.id = counter++;
+        spots = new ArrayList<>();
     }
-    public void addSpots(Integer id) {
-        Spot spot = new Spot(id);
-        spots.put(id,spot);
+    public Integer getId() {
+        return id;
+    }
+
+    public void addSpots(Spot spot) {
+         spots.add(spot);
     }
 }
