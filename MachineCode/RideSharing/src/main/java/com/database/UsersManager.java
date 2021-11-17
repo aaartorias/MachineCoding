@@ -1,9 +1,8 @@
 package main.java.com.database;
 
-import main.java.com.exceptions.DriverAlreadyExistsException;
 import main.java.com.exceptions.DriverNotFoundException;
 import main.java.com.exceptions.UserAlreadyExistsException;
-import main.java.com.model.User;
+import main.java.com.models.User;
 
 import java.util.Collection;
 import java.util.HashMap;

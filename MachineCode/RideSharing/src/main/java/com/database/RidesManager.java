@@ -3,7 +3,7 @@ package main.java.com.database;
 import main.java.com.exceptions.RideNotAvailableException;
 import main.java.com.exceptions.RideNotFoundException;
 import main.java.com.exceptions.RiderAlreadyExistsException;
-import main.java.com.model.Ride;
+import main.java.com.models.Ride;
 
 import java.util.ArrayList;
 import java.util.Collection;

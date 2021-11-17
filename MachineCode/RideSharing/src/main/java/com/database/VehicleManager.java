@@ -2,7 +2,7 @@ package main.java.com.database;
 
 import main.java.com.exceptions.VehicleAlreadyExistsException;
 import main.java.com.exceptions.VehicleNotFoundException;
-import main.java.com.model.Vehicle;
+import main.java.com.models.Vehicle;
 
 import java.util.HashMap;
 

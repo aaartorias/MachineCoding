@@ -2,9 +2,9 @@ package main.java.com.controllers;
 
 import main.java.com.database.*;
 import main.java.com.exceptions.*;
-import main.java.com.model.Ride;
-import main.java.com.model.User;
-import main.java.com.model.Vehicle;
+import main.java.com.models.Ride;
+import main.java.com.models.User;
+import main.java.com.models.Vehicle;
 
 import java.util.ArrayList;
 

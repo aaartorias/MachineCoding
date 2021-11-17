@@ -1,4 +1,4 @@
-package main.java.com.model;
+package main.java.com.models;
 
 public enum VehicleType {
 

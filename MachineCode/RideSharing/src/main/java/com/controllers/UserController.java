@@ -1,9 +1,8 @@
 package main.java.com.controllers;
 
 import main.java.com.database.UsersManager;
-import main.java.com.exceptions.DriverAlreadyExistsException;
 import main.java.com.exceptions.UserAlreadyExistsException;
-import main.java.com.model.User;
+import main.java.com.models.User;
 
 public class UserController {
     private UsersManager usersManager;

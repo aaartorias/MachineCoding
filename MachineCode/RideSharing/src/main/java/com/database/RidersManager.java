@@ -2,7 +2,7 @@ package main.java.com.database;
 
 import main.java.com.exceptions.RiderAlreadyExistsException;
 import main.java.com.exceptions.RiderNotFoundException;
-import main.java.com.model.User;
+import main.java.com.models.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;
