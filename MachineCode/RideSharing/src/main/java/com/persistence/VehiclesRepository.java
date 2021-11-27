@@ -1,4 +1,4 @@
-package main.java.com.databases;
+package main.java.com.persistence;
 
 import main.java.com.exceptions.VehicleAlreadyExistsException;
 import main.java.com.exceptions.VehicleNotFoundException;
@@ -7,10 +7,10 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 
-public class VehicleManager {
+public class VehiclesRepository {
     private HashMap<String, Vehicle> vehicles;
 
-    public VehicleManager() {
+    public VehiclesRepository() {
         vehicles = new HashMap<>();
     }
 

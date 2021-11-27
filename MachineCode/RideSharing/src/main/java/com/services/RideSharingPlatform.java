@@ -1,14 +1,14 @@
 package main.java.com.services;
 import main.java.com.controllers.*;
-import main.java.com.databases.*;
+import main.java.com.persistence.*;
 import main.java.com.exceptions.*;
 
 public class RideSharingPlatform {
-    private UsersManager usersManager;
-    private PassengersManager passengersManager;
-    private RidesManager ridesManager;
-    private VehicleManager vehiclesManager;
-    private DriversManager driversManager;
+    private UsersRepository usersRepository;
+    private ActivePassengersRepository activePassengersRepository;
+    private RidesRepository ridesRepository;
+    private VehiclesRepository vehiclesManager;
+    private DriversRepository driversRepository;
 
     private UserController userController;
     private RidesController ridesController;
@@ -18,14 +18,14 @@ public class RideSharingPlatform {
     private VehicleService vehicleService;
 
     public RideSharingPlatform() {
-        usersManager = new UsersManager();
-        passengersManager = new PassengersManager();
-        ridesManager = new RidesManager();
-        vehiclesManager = new VehicleManager();
-        driversManager = new DriversManager();
-        rideService = new RideService(usersManager, passengersManager, ridesManager, vehiclesManager, driversManager);
-        userService = new UserService(usersManager);
-        vehicleService = new VehicleService(vehiclesManager, usersManager);
+        usersRepository = new UsersRepository();
+        activePassengersRepository = new ActivePassengersRepository();
+        ridesRepository = new RidesRepository();
+        vehiclesManager = new VehiclesRepository();
+        driversRepository = new DriversRepository();
+        rideService = new RideService(usersRepository, activePassengersRepository, ridesRepository, vehiclesManager, driversRepository);
+        userService = new UserService(usersRepository);
+        vehicleService = new VehicleService(vehiclesManager, usersRepository);
         userController = new UserController(userService);
         ridesController = new RidesController(rideService);
         vehiclesController = new VehiclesController(vehicleService);

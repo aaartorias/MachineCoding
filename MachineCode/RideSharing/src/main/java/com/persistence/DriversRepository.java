@@ -1,4 +1,4 @@
-package main.java.com.databases;
+package main.java.com.persistence;
 
 import main.java.com.exceptions.DriverAlreadyExistsException;
 import main.java.com.exceptions.DriverNotFoundException;
@@ -7,10 +7,10 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 // Stores mapping <license,User>
-public class DriversManager {
+public class DriversRepository {
     private HashMap<String, User> drivers;
 
-    public DriversManager() {
+    public DriversRepository() {
         drivers = new HashMap<>();
     }
 

@@ -1,6 +1,6 @@
 package main.java.com.services;
 
-import main.java.com.databases.*;
+import main.java.com.persistence.*;
 import main.java.com.exceptions.*;
 import main.java.com.models.Ride;
 import main.java.com.models.User;
@@ -10,33 +10,33 @@ import java.util.ArrayList;
 
 public class RideService {
 
-    private UsersManager usersManager;
-    private PassengersManager passengersManager;
-    private RidesManager ridesManager;
-    private VehicleManager vehiclesManager;
-    private DriversManager driversManager;
+    private UsersRepository usersRepository;
+    private ActivePassengersRepository activePassengersRepository;
+    private RidesRepository ridesRepository;
+    private VehiclesRepository vehiclesManager;
+    private DriversRepository driversRepository;
 
-    public RideService(UsersManager usersManager, PassengersManager passengersManager, RidesManager ridesManager
-            , VehicleManager vehiclesManager, DriversManager driversManager) {
-        this.usersManager = usersManager;
-        this.passengersManager = passengersManager;
-        this.ridesManager = ridesManager;
+    public RideService(UsersRepository usersRepository, ActivePassengersRepository activePassengersRepository, RidesRepository ridesRepository
+            , VehiclesRepository vehiclesManager, DriversRepository driversRepository) {
+        this.usersRepository = usersRepository;
+        this.activePassengersRepository = activePassengersRepository;
+        this.ridesRepository = ridesRepository;
         this.vehiclesManager = vehiclesManager;
-        this.driversManager = driversManager;
+        this.driversRepository = driversRepository;
     }
 
     public void createRide(String name, String origin, String destination, String vehicleLicense, int availableSeats)
             throws DriverNotFoundException, RideAlreadyExistsForVehicleException, VehicleNotFoundException
             , RiderAlreadyExistsException {
-        User driver =  usersManager.getUser(name);
-        if (ridesManager.hasRideForVehicle(vehicleLicense)) {
+        User driver =  usersRepository.getUser(name);
+        if (ridesRepository.hasRideForVehicle(vehicleLicense)) {
             throw new RideAlreadyExistsForVehicleException();
         }
         Vehicle vehicle = vehiclesManager.getVehicle(vehicleLicense);
         Ride ride = new Ride(origin, destination, driver,vehicle, availableSeats);
-        ridesManager.addRide(ride);
+        ridesRepository.addRide(ride);
         try {
-            driversManager.addDriver(driver);
+            driversRepository.addDriver(driver);
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -48,11 +48,11 @@ public class RideService {
             throws RiderAlreadyExistsException, RideNotAvailableException,
             NoRidesAvailableException, DriverNotFoundException {
 
-        if (passengersManager.riderExists(name)) {
+        if (activePassengersRepository.riderExists(name)) {
             throw new RiderAlreadyExistsException();
         }
         Ride match = null;
-        for(Ride ride : ridesManager.getAvailableRides()) {
+        for(Ride ride : ridesRepository.getAvailableRides()) {
             if (ride.getSource() == origin && ride.getDestination() == destination
                     && ride.getAvailableSeats() >= seatsRequested) {
                 if (match == null) {
@@ -65,10 +65,10 @@ public class RideService {
         if (match == null) {
             throw new NoRidesAvailableException();
         }
-        User rider = usersManager.getUser(name); // handle exception
+        User rider = usersRepository.getUser(name); // handle exception
         match.reserveSeats(seatsRequested);
         rider.addRidesTaken();
-        passengersManager.addRider(rider);
+        activePassengersRepository.addRider(rider);
     }
 
     public void matchRide(String name, String origin
@@ -76,11 +76,11 @@ public class RideService {
             throws NoRidesAvailableException, DriverNotFoundException, RiderAlreadyExistsException
             , RideNotAvailableException, RideNotFoundException {
 
-        if (passengersManager.riderExists(name)) {
+        if (activePassengersRepository.riderExists(name)) {
             throw new RiderAlreadyExistsException();
         }
         Ride match = null;
-        for(Ride ride : ridesManager.getAvailableRides()) {
+        for(Ride ride : ridesRepository.getAvailableRides()) {
             if (ride.getSource() == origin && ride.getDestination() == destination
                     && ride.getAvailableSeats() >= seatsRequested) {
                 if (match == null) {
@@ -93,31 +93,31 @@ public class RideService {
         if (match == null) {
             throw new NoRidesAvailableException();
         }
-        User rider = usersManager.getUser(name); // handle exception
+        User rider = usersRepository.getUser(name); // handle exception
         match.reserveSeats(seatsRequested);
         rider.addRidesTaken();
-        passengersManager.addRider(rider);
+        activePassengersRepository.addRider(rider);
 
         if (match.getAvailableSeats() == 0) startRide(match.getId());
     }
 
     public void startRide(Integer ride) throws RideNotFoundException {
-        ridesManager.getRide(ride).startTrip();
+        ridesRepository.getRide(ride).startTrip();
     }
 
     public void endRide(Integer rideId) throws NoRidersFound, RideNotFoundException {
-        Ride ride = ridesManager.getRide(rideId);
+        Ride ride = ridesRepository.getRide(rideId);
         ride.endTrip();
         ArrayList<User> riders = ride.getRiders();
         if (riders == null) {
             throw new NoRidersFound();
         }
-        passengersManager.removeRiders(riders);
+        activePassengersRepository.removeRiders(riders);
     }
 
     public void endAllRides() {
         try {
-            for (Integer ride : ridesManager.getRides()) {
+            for (Integer ride : ridesRepository.getRides()) {
                 endRide(ride);
             }
         } catch (RideNotFoundException | NoRidersFound e) {

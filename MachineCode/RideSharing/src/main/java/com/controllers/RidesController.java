@@ -1,17 +1,17 @@
 package main.java.com.controllers;
 
-import main.java.com.databases.*;
+import main.java.com.persistence.*;
 import main.java.com.exceptions.*;
 import main.java.com.models.Ride;
 import main.java.com.services.RideService;
 import org.jetbrains.annotations.NotNull;
 
 public class RidesController {
-    private UsersManager usersManager;
-    private PassengersManager passengersManager;
-    private RidesManager ridesManager;
-    private VehicleManager vehiclesManager;
-    private DriversManager driversManager;
+    private UsersRepository usersRepository;
+    private ActivePassengersRepository activePassengersRepository;
+    private RidesRepository ridesRepository;
+    private VehiclesRepository vehiclesManager;
+    private DriversRepository driversRepository;
     private RideService rideService;
 
 

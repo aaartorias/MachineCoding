@@ -1,16 +1,14 @@
 package main.java.com.controllers;
 
-import main.java.com.databases.UsersManager;
-import main.java.com.databases.VehicleManager;
+import main.java.com.persistence.UsersRepository;
+import main.java.com.persistence.VehiclesRepository;
 import main.java.com.exceptions.DriverNotFoundException;
 import main.java.com.exceptions.VehicleAlreadyExistsException;
-import main.java.com.models.User;
-import main.java.com.models.Vehicle;
 import main.java.com.services.VehicleService;
 
 public class VehiclesController {
-    private VehicleManager vehicleManager;
-    private UsersManager usersManager;
+    private VehiclesRepository vehiclesRepository;
+    private UsersRepository usersRepository;
     private VehicleService vehicleService;
 
 

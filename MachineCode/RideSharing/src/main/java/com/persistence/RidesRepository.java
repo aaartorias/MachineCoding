@@ -1,4 +1,4 @@
-package main.java.com.databases;
+package main.java.com.persistence;
 
 import main.java.com.exceptions.RideNotAvailableException;
 import main.java.com.exceptions.RideNotFoundException;
@@ -10,10 +10,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
-public class RidesManager {
+public class RidesRepository {
     private HashMap<Integer, Ride> rides;
 
-    public RidesManager() {
+    public RidesRepository() {
         rides = new HashMap<>();
     }
 

@@ -1,4 +1,4 @@
-package main.java.com.databases;
+package main.java.com.persistence;
 
 import main.java.com.exceptions.DriverNotFoundException;
 import main.java.com.exceptions.UserAlreadyExistsException;
@@ -8,10 +8,10 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Collection;
 import java.util.HashMap;
 
-public class UsersManager {
+public class UsersRepository {
     private HashMap<String, User> users;
 
-    public UsersManager() {
+    public UsersRepository() {
         users = new HashMap<>();
     }
 

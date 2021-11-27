@@ -1,28 +1,28 @@
 package main.java.com.services;
 
-import main.java.com.databases.UsersManager;
-import main.java.com.databases.VehicleManager;
+import main.java.com.persistence.UsersRepository;
+import main.java.com.persistence.VehiclesRepository;
 import main.java.com.exceptions.DriverNotFoundException;
 import main.java.com.exceptions.VehicleAlreadyExistsException;
 import main.java.com.models.User;
 import main.java.com.models.Vehicle;
 
 public class VehicleService {
-    private VehicleManager vehicleManager;
-    private UsersManager usersManager;
+    private VehiclesRepository vehiclesRepository;
+    private UsersRepository usersRepository;
 
-    public VehicleService(VehicleManager vehicleManager, UsersManager usersManager) {
-        this.vehicleManager = vehicleManager;
-        this.usersManager = usersManager;
+    public VehicleService(VehiclesRepository vehiclesRepository, UsersRepository usersRepository) {
+        this.vehiclesRepository = vehiclesRepository;
+        this.usersRepository = usersRepository;
     }
 
     public void addVehicle(String name, String model, String license)
             throws VehicleAlreadyExistsException, DriverNotFoundException {
-        if (vehicleManager.vehicleExists(license)) {
+        if (vehiclesRepository.vehicleExists(license)) {
             throw new VehicleAlreadyExistsException();
         }
-        User owner = usersManager.getUser(name);
+        User owner = usersRepository.getUser(name);
         Vehicle vehicle = new Vehicle(owner, model, license);
-        vehicleManager.addVehicle(vehicle);
+        vehiclesRepository.addVehicle(vehicle);
     }
 }

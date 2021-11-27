@@ -1,12 +1,11 @@
 package main.java.com.controllers;
 
-import main.java.com.databases.UsersManager;
+import main.java.com.persistence.UsersRepository;
 import main.java.com.exceptions.UserAlreadyExistsException;
-import main.java.com.models.User;
 import main.java.com.services.UserService;
 
 public class UserController {
-    private UsersManager usersManager;
+    private UsersRepository usersRepository;
     private UserService userService;
 
     public UserController(UserService userService) {

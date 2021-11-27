@@ -1,4 +1,4 @@
-package main.java.com.databases;
+package main.java.com.persistence;
 
 import main.java.com.exceptions.RiderAlreadyExistsException;
 import main.java.com.exceptions.RiderNotFoundException;
@@ -8,10 +8,10 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.HashMap;
 // Stores mapping <name,User> for riders
-public class PassengersManager {
+public class ActivePassengersRepository {
     private HashMap<String, User> riders;
 
-    public PassengersManager() {
+    public ActivePassengersRepository() {
         riders = new HashMap<>();
     }
 
