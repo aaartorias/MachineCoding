@@ -1,6 +1,8 @@
 package main.java.com.models;
 
-public class User {
+import main.java.com.interfaces.IUser;
+
+public class User implements IUser {
     private String name;
     private char gender;
     private int age;

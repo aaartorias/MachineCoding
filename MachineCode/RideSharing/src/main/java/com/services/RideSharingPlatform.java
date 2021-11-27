@@ -1,11 +1,11 @@
-package main.java.com.rideSharingService;
+package main.java.com.services;
 import main.java.com.controllers.*;
-import main.java.com.database.*;
+import main.java.com.databases.*;
 import main.java.com.exceptions.*;
 
-public class RideSharingService {
+public class RideSharingPlatform {
     private UsersManager usersManager;
-    private RidersManager ridersManager;
+    private PassengersManager passengersManager;
     private RidesManager ridesManager;
     private VehicleManager vehiclesManager;
     private DriversManager driversManager;
@@ -13,17 +13,23 @@ public class RideSharingService {
     private UserController userController;
     private RidesController ridesController;
     private VehiclesController vehiclesController;
+    private RideService rideService;
+    private UserService userService;
+    private VehicleService vehicleService;
 
-    public RideSharingService() {
+    public RideSharingPlatform() {
         usersManager = new UsersManager();
-        ridersManager = new RidersManager();
+        passengersManager = new PassengersManager();
         ridesManager = new RidesManager();
         vehiclesManager = new VehicleManager();
         driversManager = new DriversManager();
+        rideService = new RideService(usersManager, passengersManager, ridesManager, vehiclesManager, driversManager);
+        userService = new UserService(usersManager);
+        vehicleService = new VehicleService(vehiclesManager, usersManager);
+        userController = new UserController(userService);
+        ridesController = new RidesController(rideService);
+        vehiclesController = new VehiclesController(vehicleService);
 
-        userController = new UserController(usersManager);
-        ridesController = new RidesController(usersManager, ridersManager, ridesManager, vehiclesManager, driversManager);
-        vehiclesController = new VehiclesController(vehiclesManager, usersManager);
     }
 
     public void  addUser(String name, char gender, int age) throws UserAlreadyExistsException {
@@ -68,7 +74,7 @@ public class RideSharingService {
         }
     }
 
-    public void endRide(Integer rideId) throws RideNotFoundException, NoRidersFound {
+    public void endRide(Integer rideId) throws Exception {
         ridesController.endRide(rideId);
     }
 
@@ -78,5 +84,9 @@ public class RideSharingService {
 
     public void printStats() {
         userController.printStats();
+    }
+
+    public void startRide(Integer rideId) throws RideNotFoundException {
+        ridesController.startRide(rideId);
     }
 }

@@ -7,11 +7,11 @@ import java.util.ArrayList;
 
 public class UserController {
     private UserStore userStore;
-    private final ObservableController observableController;
+    private final ObserverController observerController;
 
-    public UserController(UserStore userStore, ObservableController observableController) {
+    public UserController(UserStore userStore, ObserverController observerController) {
         this.userStore = userStore;
-        this.observableController = observableController;
+        this.observerController = observerController;
     }
 
     // create user

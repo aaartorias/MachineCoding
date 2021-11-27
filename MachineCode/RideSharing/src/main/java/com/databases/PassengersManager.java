@@ -1,20 +1,21 @@
-package main.java.com.database;
+package main.java.com.databases;
 
 import main.java.com.exceptions.RiderAlreadyExistsException;
 import main.java.com.exceptions.RiderNotFoundException;
 import main.java.com.models.User;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
-public class RidersManager {
+// Stores mapping <name,User> for riders
+public class PassengersManager {
     private HashMap<String, User> riders;
 
-    public RidersManager() {
+    public PassengersManager() {
         riders = new HashMap<>();
     }
 
-    public void addRider(User rider) throws RiderAlreadyExistsException {
+    public void addRider(@NotNull User rider) throws RiderAlreadyExistsException {
         if (riders.containsKey(rider.getName())) {
             throw new RiderAlreadyExistsException();
         }

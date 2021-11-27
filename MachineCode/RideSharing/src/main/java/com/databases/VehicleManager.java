@@ -1,8 +1,9 @@
-package main.java.com.database;
+package main.java.com.databases;
 
 import main.java.com.exceptions.VehicleAlreadyExistsException;
 import main.java.com.exceptions.VehicleNotFoundException;
 import main.java.com.models.Vehicle;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 
@@ -13,7 +14,7 @@ public class VehicleManager {
         vehicles = new HashMap<>();
     }
 
-    public void addVehicle(Vehicle vehicle) throws VehicleAlreadyExistsException {
+    public void addVehicle(@NotNull Vehicle vehicle) throws VehicleAlreadyExistsException {
         if (vehicles.containsKey(vehicle.getLicense())) {
             throw new VehicleAlreadyExistsException();
         }

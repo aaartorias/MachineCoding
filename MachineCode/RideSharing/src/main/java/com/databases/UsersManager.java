@@ -1,8 +1,9 @@
-package main.java.com.database;
+package main.java.com.databases;
 
 import main.java.com.exceptions.DriverNotFoundException;
 import main.java.com.exceptions.UserAlreadyExistsException;
 import main.java.com.models.User;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -14,7 +15,7 @@ public class UsersManager {
         users = new HashMap<>();
     }
 
-    public void addUser(User user) throws UserAlreadyExistsException {
+    public void addUser(@NotNull User user) throws UserAlreadyExistsException {
         if (users.containsKey(user.getName())) {
             throw new UserAlreadyExistsException();
         }

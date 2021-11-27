@@ -1,30 +1,26 @@
 package main.java.com.controllers;
 
-import main.java.com.database.UsersManager;
-import main.java.com.database.VehicleManager;
+import main.java.com.databases.UsersManager;
+import main.java.com.databases.VehicleManager;
 import main.java.com.exceptions.DriverNotFoundException;
 import main.java.com.exceptions.VehicleAlreadyExistsException;
 import main.java.com.models.User;
 import main.java.com.models.Vehicle;
+import main.java.com.services.VehicleService;
 
 public class VehiclesController {
     private VehicleManager vehicleManager;
     private UsersManager usersManager;
+    private VehicleService vehicleService;
 
 
-    public VehiclesController(VehicleManager vehicleManager, UsersManager usersManager) {
-        this.vehicleManager = vehicleManager;
-        this.usersManager = usersManager;
+    public VehiclesController(VehicleService vehicleService) {
+        this.vehicleService = vehicleService;
     }
 
     public void registerVehicle(String name, String model, String license)
             throws VehicleAlreadyExistsException, DriverNotFoundException {
-        if (vehicleManager.vehicleExists(license)) {
-            throw new VehicleAlreadyExistsException();
-        }
-        User owner = usersManager.getUser(name);
-        Vehicle vehicle = new Vehicle(owner, model, license);
-        vehicleManager.addVehicle(vehicle);
+        vehicleService.addVehicle(name, model, license);
     }
 
 }

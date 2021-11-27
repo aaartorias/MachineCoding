@@ -6,8 +6,6 @@ import main.java.com.exceptions.RequestedSeatsNotAvailableException;
 import main.java.com.interfaces.Game;
 import main.java.com.interfaces.User;
 import main.java.com.models.Booking;
-import main.java.com.models.Cricket;
-import main.java.com.models.FootBall;
 import main.java.com.persistence.BookingStore;
 import main.java.com.persistence.CricketStore;
 import main.java.com.persistence.FootballStore;
@@ -26,6 +24,7 @@ public class SportsMeetUp {
     private CricketController cricketController;
     private UserController userController;
     private ObservableController observableController;
+    private ObserverController observerController;
 
     public void initialize() {
         bookingStore = new BookingStore();
@@ -33,10 +32,11 @@ public class SportsMeetUp {
         cricketStore = new CricketStore();
         userStore = new UserStore();
         observableController = new ObservableController();
+        observerController = new ObserverController();
         bookingController = new BookingController(bookingStore, observableController);
         footballController = new FootballController(footballStore, userStore, observableController);
         cricketController = new CricketController(cricketStore, userStore, observableController);
-        userController = new UserController(userStore, observableController);
+        userController = new UserController(userStore, observerController);
     }
 
     public Integer book(Integer requesterId, Integer seatsRequested, String gameType ,Integer gameId) {
@@ -143,7 +143,4 @@ public class SportsMeetUp {
         ArrayList<Game> allAvailableCricketGames = cricketController.getAvailableGames();
         printGames(allAvailableCricketGames);
     }
-
-
-
 }

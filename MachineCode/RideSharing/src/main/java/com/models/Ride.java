@@ -2,14 +2,7 @@ package main.java.com.models;
 
 import java.util.ArrayList;
 
-enum RideStatus {
-    NOT_STARTED,
-    IN_PROGRESS,
-    FINISHED
-}
-
 public class Ride {
-
     private String source;
     private String destination;
     private ArrayList<User> riders;
@@ -62,10 +55,7 @@ public class Ride {
     }
 
     public boolean isAvailable() {
-        if (status == RideStatus.NOT_STARTED) {
-            return true;
-        }
-        return  false;
+        return status == RideStatus.NOT_STARTED;
     }
 
     public Integer getAvailableSeats() {
@@ -79,4 +69,13 @@ public class Ride {
     public ArrayList<User> getRiders() {
         return riders;
     }
+
+    public boolean isActive() {
+        return status == RideStatus.IN_PROGRESS;
+    }
+
+    public boolean isComplete() {
+        return status == RideStatus.FINISHED;
+    }
+
 }

@@ -1,2 +1,5 @@
-package main.java.com.controllers;public class ObserverController {
+package main.java.com.controllers;
+
+public class ObserverController {
+
 }

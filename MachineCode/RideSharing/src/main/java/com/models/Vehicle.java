@@ -1,8 +1,8 @@
 package main.java.com.models;
 
-import main.java.com.models.User;
+import main.java.com.interfaces.IVehicle;
 
-public class Vehicle {
+public class Vehicle implements IVehicle {
     private String model;
     private String license;
     private User owner;
@@ -13,7 +13,7 @@ public class Vehicle {
         this.license = license;
     }
 
-    private User getUser() {
+    public User getOwner() {
         return owner;
     }
 

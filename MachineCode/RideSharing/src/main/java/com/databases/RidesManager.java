@@ -1,9 +1,10 @@
-package main.java.com.database;
+package main.java.com.databases;
 
 import main.java.com.exceptions.RideNotAvailableException;
 import main.java.com.exceptions.RideNotFoundException;
 import main.java.com.exceptions.RiderAlreadyExistsException;
 import main.java.com.models.Ride;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -16,7 +17,7 @@ public class RidesManager {
         rides = new HashMap<>();
     }
 
-    public void addRide(Ride ride) throws RiderAlreadyExistsException {
+    public void addRide(@NotNull Ride ride) throws RiderAlreadyExistsException {
         if (rides.containsKey(ride.getId())) {
             throw new RiderAlreadyExistsException();
         }
