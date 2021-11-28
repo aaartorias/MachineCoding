@@ -1,14 +1,22 @@
 package test;
 
-import main.Model.Size;
-import main.ParkingService;
+import main.ParkingClient;
+import main.models.ParkingLot;
+import main.models.VehicleType;
 
 public class Test {
     public static void main(String[] args) {
-        ParkingService parkingService = new ParkingService();
-        parkingService.createParkingLot(1,3,5);
-        Integer ticketId =  parkingService.parkVehicle(Size.CAR , "1", "blue");
-        parkingService.unparkVehicle(ticketId);
-        parkingService.display();
+        ParkingClient parkingClient = new ParkingClient();
+        ParkingLot parkingLot = parkingClient.createParkingLot(1234,2,6);
+
+        parkingClient.displayFreeSpotsCountForVehiclePerFloor(parkingLot.getId(), VehicleType.CAR);
+        parkingClient.displayFreeSpotsForVehicle(parkingLot.getId(),VehicleType.CAR);
+
+        parkingClient.displayFreeSpotsCountForVehiclePerFloor(parkingLot.getId(), VehicleType.BIKE);
+        parkingClient.displayFreeSpotsForVehicle(parkingLot.getId(),VehicleType.BIKE);
+
+        parkingClient.displayFreeSpotsCountForVehiclePerFloor(parkingLot.getId(), VehicleType.TRUCK);
+        parkingClient.displayFreeSpotsForVehicle(parkingLot.getId(),VehicleType.TRUCK);
+
     }
 }

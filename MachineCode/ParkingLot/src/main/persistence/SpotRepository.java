@@ -1,15 +1,21 @@
-package main.Persistence;
+package main.persistence;
 
-import main.Model.Floor;
-import main.Model.Spot;
+import main.models.spots.Spot;
 import main.interfaces.repository.ISpotRepository;
 import main.interfaces.repository.Store;
+import main.factory.ParkingSpotFactory;
 
 public class SpotRepository extends Store<Integer, Spot> implements ISpotRepository {
 
+    ParkingSpotFactory parkingSpotFactory;
+
+    public SpotRepository(ParkingSpotFactory parkingSpotFactory) {
+        this.parkingSpotFactory = parkingSpotFactory;
+    }
+
     @Override
-    public Spot addSpot() {
-        Spot spot = new Spot();
+    public Spot addSpot(Integer localId) {
+        Spot spot = parkingSpotFactory.createSpot(localId);
         add(spot.getSpotId(),spot);
         return spot;
     }

@@ -1,9 +1,9 @@
 package main.interfaces.repository;
 
-import main.Model.Size;
-import main.Model.Vehicle;
+import main.models.vehicles.Vehicle;
+import main.models.VehicleType;
 
 public interface IVehicleRepository {
-    Vehicle addVehicle(Size Size, String license, String color);
+    Vehicle addVehicle(VehicleType vehicleType, String license, String color);
     Vehicle getVehicle(String license);
 }

@@ -1,20 +1,19 @@
-package main.Model;
+package main.models;
 
-enum Status {
-    NEW,
-    ASSIGNED,
-    COLLECTED
-}
+import main.models.spots.Spot;
+import main.models.vehicles.Vehicle;
 
-public class Ticket {
+public class Booking {
     private Integer id;
-    private Status status;
+    private BookingStatus bookingStatus;
     private static Integer counter = 0;
     private Spot spot;
     private Vehicle vehicle;
 
-    public Ticket() {
-        status = Status.NEW;
+    public Booking(Vehicle vehicle, Spot spot) {
+        this.vehicle = vehicle;
+        this.spot = spot;
+        this.bookingStatus = BookingStatus.CREATED;
         this.id = ++counter;
     }
 
@@ -22,16 +21,12 @@ public class Ticket {
         return id;
     }
 
-    public Status getStatus() {
-        return status;
-    }
-
-    public void assign() {
-        status = Status.ASSIGNED;
+    public BookingStatus getStatus() {
+        return bookingStatus;
     }
 
     public void collect() {
-        status = Status.COLLECTED;
+        bookingStatus = BookingStatus.COLLECTED;
     }
 
     public Spot getSpot() {
@@ -49,4 +44,5 @@ public class Ticket {
     public void setVehicle(Vehicle vehicle) {
         this.vehicle = vehicle;
     }
+
 }

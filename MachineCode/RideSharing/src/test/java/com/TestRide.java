@@ -1,69 +1,69 @@
 package test.java.com;
+import main.java.com.RideSharingClient;
 import main.java.com.exceptions.*;
-import main.java.com.services.*;
 
 public class TestRide {
     public static void main(String[] args) throws Exception {
-        RideSharingPlatform rideSharingPlatform = new RideSharingPlatform();
-        addUsers(rideSharingPlatform); // Add User
-        addVehicle(rideSharingPlatform); // Add Vehicle
+        RideSharingClient rideSharingClient = new RideSharingClient();
+        addUsers(rideSharingClient); // Add User
+        addVehicle(rideSharingClient); // Add Vehicle
 
-        offerRides(rideSharingPlatform); // Offer ride
-        selectRides(rideSharingPlatform); // Select ride
+        offerRides(rideSharingClient); // Offer ride
+        selectRides(rideSharingClient); // Select ride
 
-        rideSharingPlatform.endAllRides(); // End ride
-        rideSharingPlatform.printStats(); // print stats
+        rideSharingClient.endAllRides(); // End ride
+        rideSharingClient.printStats(); // print stats
 
-        rideSharingPlatform.startRide(1);
+        rideSharingClient.startRide(1);
     }
 
-    private static void selectRides(RideSharingPlatform rideSharingPlatform)
+    private static void selectRides(RideSharingClient rideSharingClient)
             throws DriverNotFoundException, RideNotAvailableException
             , NoRidesAvailableException, RiderAlreadyExistsException {
-        rideSharingPlatform.selectRide("Nandini", "Bangalore", "Mysore", 1);
-        rideSharingPlatform.selectRide("Gaurav", "Bangalore", "Mysore", 1
+        rideSharingClient.selectRide("Nandini", "Bangalore", "Mysore", 1);
+        rideSharingClient.selectRide("Gaurav", "Bangalore", "Mysore", 1
                 ,"Activa");
-        rideSharingPlatform.selectRide("Shashank", "Mumbai", "Bangalore",1);
-        rideSharingPlatform.selectRide("Rohan", "Hyderabad", "Bangalore", 1
+        rideSharingClient.selectRide("Shashank", "Mumbai", "Bangalore",1);
+        rideSharingClient.selectRide("Rohan", "Hyderabad", "Bangalore", 1
                 ,"Baleno");
-        rideSharingPlatform.selectRide("Shashank", "Hyderabad", "Bangalore", 1
+        rideSharingClient.selectRide("Shashank", "Hyderabad", "Bangalore", 1
                 ,"Polo");
     }
 
-    private static void offerRides(RideSharingPlatform rideSharingPlatform)
+    private static void offerRides(RideSharingClient rideSharingClient)
             throws DriverNotFoundException, VehicleNotFoundException, DriverAlreadyExistsException
             , RideAlreadyExistsForVehicleException, RiderAlreadyExistsException {
-        rideSharingPlatform.offerRide("Rohan", "Hyderabad", 1,
+        rideSharingClient.offerRide("Rohan", "Hyderabad", 1,
                 "Swift", "KA-01-12345", "Bangalore");
-        rideSharingPlatform.offerRide("Shipra", "Bangalore", 1,
+        rideSharingClient.offerRide("Shipra", "Bangalore", 1,
                 "Activa", "KA-12-12332", "Mysore");
-        rideSharingPlatform.offerRide("Shipra", "Bangalore", 2,
+        rideSharingClient.offerRide("Shipra", "Bangalore", 2,
                 "Polo", "KA-05-41491", "Mysore");
-        rideSharingPlatform.offerRide("Shashank", "Hyderabad", 2,
+        rideSharingClient.offerRide("Shashank", "Hyderabad", 2,
                 "Baleno","TS-05-62395", "Bangalore");
-        rideSharingPlatform.offerRide("Rahul", "Hyderabad", 5
+        rideSharingClient.offerRide("Rahul", "Hyderabad", 5
                 ,"XUV",  "KA-05-1234", "Bangalore");
-        rideSharingPlatform.offerRide("Rohan", "Bangalore", 1
+        rideSharingClient.offerRide("Rohan", "Bangalore", 1
                 , "Swift", "KA-01-12345", "Pune");
     }
 
-    private static void addVehicle(RideSharingPlatform rideSharingPlatform)
+    private static void addVehicle(RideSharingClient rideSharingClient)
             throws VehicleAlreadyExistsException, DriverNotFoundException {
-        rideSharingPlatform.addVehicle("Rahul", "XUV", "KA-05-1234");
-        rideSharingPlatform.addVehicle("Rohan", "Swift", "KA-01-12345");
-        rideSharingPlatform.addVehicle("Shashank", "Baleno", "TS-05-62395");
-        rideSharingPlatform.addVehicle("Shipra", "Polo", "KA-05-41491");
-        rideSharingPlatform.addVehicle("Shipra", "Activa", "KA-12-12332");
+        rideSharingClient.addVehicle("Rahul", "XUV", "KA-05-1234");
+        rideSharingClient.addVehicle("Rohan", "Swift", "KA-01-12345");
+        rideSharingClient.addVehicle("Shashank", "Baleno", "TS-05-62395");
+        rideSharingClient.addVehicle("Shipra", "Polo", "KA-05-41491");
+        rideSharingClient.addVehicle("Shipra", "Activa", "KA-12-12332");
     }
 
-    private static void addUsers(RideSharingPlatform rideSharingPlatform) throws UserAlreadyExistsException {
+    private static void addUsers(RideSharingClient rideSharingClient) throws UserAlreadyExistsException {
         // Add User
-        rideSharingPlatform.addUser("Rohan", 'M', 36);
-        rideSharingPlatform.addUser("Shashank", 'M', 29);
-        rideSharingPlatform.addUser("Nandini", 'F', 29);
-        rideSharingPlatform.addUser("Shipra", 'F', 27) ;
-        rideSharingPlatform.addUser("Gaurav", 'M', 29);
-        rideSharingPlatform.addUser("Rahul", 'M', 35);
+        rideSharingClient.addUser("Rohan", 'M', 36);
+        rideSharingClient.addUser("Shashank", 'M', 29);
+        rideSharingClient.addUser("Nandini", 'F', 29);
+        rideSharingClient.addUser("Shipra", 'F', 27) ;
+        rideSharingClient.addUser("Gaurav", 'M', 29);
+        rideSharingClient.addUser("Rahul", 'M', 35);
     }
 
 }

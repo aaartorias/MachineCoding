@@ -1,12 +1,10 @@
-package main.Model;
+package main.models.vehicles;
 
 public class Vehicle {
     private String license;
-    private Size size;
     private String color;
 
-    public Vehicle(Size Size, String license, String color) {
-        this.size = size;
+    public Vehicle(String license, String color) {
         this.license = license;
         this.color = color;
     }
@@ -15,8 +13,8 @@ public class Vehicle {
         return license;
     }
 
-    public Size getVehicleType() {
-        return size;
+    public String getVehicleColor() {
+        return color;
     }
 
 

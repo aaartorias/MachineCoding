@@ -1,16 +1,14 @@
-package main.Model;
+package main.models;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class ParkingLot {
     private ArrayList<Floor> floors;
     private Integer id;
-    //private static Integer counter = 0;
 
     public ParkingLot(Integer id) {
-        id = id;
-        floors = new ArrayList<>();
+        this.id = id;
+        this.floors = new ArrayList<>();
     }
 
     public ArrayList<Floor> getFloors() {

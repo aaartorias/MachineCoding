@@ -1,9 +1,6 @@
 package main.interfaces.repository;
 
-import main.Model.Floor;
-import main.Model.ParkingLot;
-
-import java.util.ArrayList;
+import main.models.Floor;
 
 public interface IFloorRepository {
     Floor addFloor(Integer floorId);

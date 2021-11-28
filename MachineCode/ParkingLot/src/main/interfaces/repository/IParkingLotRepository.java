@@ -1,9 +1,8 @@
 package main.interfaces.repository;
 
-import main.Model.ParkingLot;
+import main.models.ParkingLot;
 
 public interface IParkingLotRepository {
-    void addParkingLot(Integer id, ParkingLot parkingLot );
     ParkingLot getParkingLot(Integer id);
-
+    ParkingLot createParking(Integer parkingLotId);
 }
