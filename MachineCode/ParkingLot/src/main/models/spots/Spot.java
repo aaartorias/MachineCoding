@@ -34,7 +34,8 @@ public class Spot {
         if (status == SpotStatus.ASSIGNED || status == SpotStatus.UNAVAILABLE) {
             status = SpotStatus.EMPTY;
         } else {
-            throw new UnsupportedOperationException();
+            //throw new UnsupportedOperationException();
+            System.out.println("Illegal operation: can't free the given spot");
         }
     }
 

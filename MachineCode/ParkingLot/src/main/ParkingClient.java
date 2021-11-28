@@ -38,6 +38,9 @@ public class ParkingClient {
 
         bookingController = new BookingController(bookingService);
         parkingLotController = new ParkingLotController(parkingLotService);
+
+        bookingService.setParkingController(parkingLotController);
+
     }
 
     public ParkingLot createParkingLot(Integer parkingLotId, Integer totalFloors, Integer slotsPerFloor) {
@@ -59,7 +62,9 @@ public class ParkingClient {
 
     public Integer parkVehicle(VehicleType vehicleType, String license, String color, Integer parkingLotId) {
         Booking booking = bookingController.parkVehicle(vehicleType, license, color, parkingLotId);
-        System.out.println("Assigned Ticket ID " + booking.getId() + " against Vehicle Id " + booking.getVehicle().getLicense());
+        if (booking != null) {
+            System.out.println("Assigned Ticket ID " + booking.getId() + " against Vehicle Id " + booking.getVehicle().getLicense());
+        }
         return booking == null ? -1 : booking.getId();
     }
 

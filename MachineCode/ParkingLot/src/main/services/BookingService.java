@@ -40,6 +40,10 @@ public class BookingService {
         return booking;
     }
 
+    public void setParkingController(ParkingLotController parkingLotController) {
+        this.parkingLotController = parkingLotController;
+    }
+
 
     // collect booking
 }
