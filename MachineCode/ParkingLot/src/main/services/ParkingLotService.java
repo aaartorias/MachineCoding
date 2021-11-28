@@ -97,10 +97,14 @@ public class ParkingLotService {
         ParkingLot parkingLot = parkingLotRepository.getParkingLot(parkingLotId);
         for (Floor floor: parkingLot.getFloors()) {
             ArrayList<Spot> freeSpots = floor.getAllFreeSpots(spotType);
-            if (!freeSpots.isEmpty()) {
-                System.out.println("Free slots for " + vehicleTypeStr + " on Floor "
-                        + floor.getLocalId() + " : " + getSpotIds(freeSpots));
-            }
+            String freeSpotIds = getSpotIds(freeSpots);
+//            if (!freeSpots.isEmpty()) {
+//                System.out.println("Free slots for " + vehicleTypeStr + " on Floor "
+//                        + floor.getLocalId() + " : " + getSpotIds(freeSpots));
+//            }
+            System.out.println("Free slots for " + vehicleTypeStr + " on Floor "
+                    + floor.getLocalId() + " : " + freeSpotIds);
+
         }
     }
 

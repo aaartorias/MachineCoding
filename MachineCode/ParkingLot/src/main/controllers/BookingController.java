@@ -15,4 +15,8 @@ public class BookingController {
     public Booking parkVehicle(VehicleType vehicleType, String license, String color, Integer parkingLotId) {
         return bookingService.createBooking(vehicleType, license, color, parkingLotId);
     }
+
+    public void removeVehicle(Integer ticketId) {
+        bookingService.removeVehicle(ticketId);
+    }
 }

@@ -44,6 +44,18 @@ public class BookingService {
         this.parkingLotController = parkingLotController;
     }
 
+    public void removeVehicle(Integer ticketId) {
+        Booking booking = bookingRepository.get(ticketId);
+        if (booking == null) {
+            System.out.println("");
+            // throw  new IllegalOperation() for IllegalParkingTicketId
+        } else {
+            Spot spot = booking.getSpot();
+            spot.freeSpot(); // isEmpty before assigning or handle the exception
+            booking.collect();
+        }
+    }
+
 
     // collect booking
 }
