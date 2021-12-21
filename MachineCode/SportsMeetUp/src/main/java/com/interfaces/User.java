@@ -2,7 +2,7 @@ package main.java.com.interfaces;
 
 import main.java.com.interfaces.observers.IGameObserver;
 
-public class User implements IUser{
+public class User implements IUser {
     private String name;
     private String email;
     private String phone;
