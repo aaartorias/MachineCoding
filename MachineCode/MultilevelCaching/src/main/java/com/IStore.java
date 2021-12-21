@@ -1,7 +1,7 @@
 package main.java.com;
 
 interface IStore {
-    Response read(Integer key);
-    Response write(Integer key, Integer value);
+    Response read(String key);
+    Response write(String key, String value);
     void evict();
 }

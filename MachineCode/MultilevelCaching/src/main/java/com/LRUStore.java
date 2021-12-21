@@ -5,7 +5,7 @@ import java.util.LinkedList;
 
 public class LRUStore implements IStore {
     private LinkedList<Node> lruList;
-    private HashMap<Integer,Node> lruMap;
+    private HashMap<String,Node> lruMap;
 
     public LRUStore() {
         this.lruList = new LinkedList<>();
@@ -13,14 +13,14 @@ public class LRUStore implements IStore {
     }
 
     @Override
-    public Response read(Integer key) {
-//        Response response = new Response();
+    public Response read(String key) {
+        Response response = new Response();
 //        int readTime = 0;
 //        int writeTime
         if (lruMap.containsKey(key)) {
             moveToFront(lruMap.get(key));
         }
-        return null;
+        return response;
     }
 
     private void moveToFront(Node node) {
@@ -28,7 +28,7 @@ public class LRUStore implements IStore {
     }
 
     @Override
-    public Response write(Integer key, Integer value) {
+    public Response write(String key, String value) {
         return null;
     }
 
@@ -38,28 +38,3 @@ public class LRUStore implements IStore {
     }
 }
 
-class Node {
-    private Integer key;
-    private Integer value;
-
-    public Node(Integer key, Integer value) {
-        this.key = key;
-        this.value = value;
-    }
-
-    public Integer getKey() {
-        return key;
-    }
-
-    public void setKey(Integer key) {
-        this.key = key;
-    }
-
-    public Integer getValue() {
-        return value;
-    }
-
-    public void setValue(Integer value) {
-        this.value = value;
-    }
-}

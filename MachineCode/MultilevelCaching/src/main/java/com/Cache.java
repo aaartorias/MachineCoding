@@ -24,13 +24,13 @@ public class Cache {
         return id;
     }
 
-    public Response read(int key) {
+    public Response read(String key) {
         Response response = store.read(key);
         response.setReadTime(response.getReadTime() + readSpeed);
         return response;
     }
 
-    public Response write(Integer key, Integer value) {
+    public Response write(String key, String value) {
         if (filled == capacity) {
             store.evict();
             filled = filled - 1;

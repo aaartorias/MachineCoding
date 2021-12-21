@@ -20,8 +20,8 @@ public class CachingService {
         IStore store2 = new LRUStore();
         IStore store3 = new LRUStore();
         Cache c1 = new Cache(2,1,2, 3, 0, store1);
-        Cache c2 = new Cache(4,2,2, 3, 0, store2);
-        Cache c3 = new Cache(8,3,2, 3, 0, store3);
+        Cache c2 = new Cache(4,2,3, 4, 0, store2);
+        Cache c3 = new Cache(8,3,5, 7, 0, store3);
         cacheList.add(c1);
         cacheList.add(c2);
         cacheList.add(c3);
@@ -39,7 +39,7 @@ public class CachingService {
     }
 
     private void printAvgWriteTime() {
-        System.out.println("Average write time : ");
+        System.out.printf("Average write time : ");
         printAvgTime(writeTimeQueue);
     }
 
@@ -49,11 +49,11 @@ public class CachingService {
             totalTime = totalTime + time;
         }
         double avgTime = (double)(totalTime/timeQueue.size());
-        System.out.printf(String.valueOf(avgTime));
+        System.out.println(avgTime);
     }
 
     private void printAvgReadTime() {
-        System.out.println("Average read time : ");
+        System.out.printf("Average read time : ");
         printAvgTime(readTimeQueue);
     }
 
@@ -64,7 +64,7 @@ public class CachingService {
         }
     }
 
-    public Integer readKey(int key) {
+    public String readKey(String key) {
         int i = 0;
         int readTime = 0, writeTime = 0;
         Response response = null;
@@ -75,14 +75,18 @@ public class CachingService {
                 break;
             }
         }
-        int value = response.getValue();
+        String value = null;
         if (response.keyFound()) {
+            value = response.getValue();
             for ( int j = i - 1; j >= 0; j--) {
                 response = cacheList.get(i).write(key, value);
                 writeTime += response.getWriteTime();
             }
         }
         updateStats(readTime, writeTime);
+        if (value == null) {
+            System.out.println("cache miss for key : " + key );
+        }
         return value;
     }
 
@@ -105,7 +109,7 @@ public class CachingService {
         writeTimeQueue.add(writeTime);
     }
 
-    public void write(Integer key, Integer value) {
+    public void write(String key, String value) {
         Response response = null;
         int readTime = 0;
         int writeTime = 0;

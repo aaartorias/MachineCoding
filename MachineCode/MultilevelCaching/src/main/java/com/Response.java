@@ -1,26 +1,33 @@
 package main.java.com;
 
 public class Response {
-    private Integer key;
-    private Integer value;
+    private String key;
+    private String value;
     private Integer readTime;
     private Integer writeTime;
     private boolean found;
     public boolean isCacheModified;
 
-    public Integer getKey() {
+    public Response() {
+        this.readTime = 0;
+        this.writeTime = 0;
+        this.isCacheModified = false;
+        this.found = false;
+    }
+
+    public String getKey() {
         return key;
     }
 
-    public void setKey(Integer key) {
+    public void setKey(String key) {
         this.key = key;
     }
 
-    public Integer getValue() {
+    public String getValue() {
         return value;
     }
 
-    public void setValue(Integer value) {
+    public void setValue(String value) {
         this.value = value;
     }
 
