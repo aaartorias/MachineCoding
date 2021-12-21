@@ -21,7 +21,7 @@ public class CachingService {
         IStore store3 = new LRUStore();
         Cache c1 = new Cache(2,1,2, 3, 0, store1);
         Cache c2 = new Cache(4,2,3, 4, 0, store2);
-        Cache c3 = new Cache(8,3,5, 7, 0, store3);
+        Cache c3 = new Cache(6,3,5, 7, 0, store3);
         cacheList.add(c1);
         cacheList.add(c2);
         cacheList.add(c3);

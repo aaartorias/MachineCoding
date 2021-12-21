@@ -51,11 +51,12 @@ public class Cache {
         if (response.isCacheModified) {
             response.setWriteTime(response.getWriteTime() + writeSpeed);
         }
+        filled = filled + 1;
         return response;
     }
 
 
     public Double getUsage() {
-        return (double)(filled/capacity);
+        return ((double)filled/(double)capacity);
     }
 }
