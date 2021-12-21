@@ -5,14 +5,14 @@ public class Response {
     private String value;
     private Integer readTime;
     private Integer writeTime;
-    private boolean found;
+    private boolean keyFound;
     public boolean isCacheModified;
 
     public Response() {
         this.readTime = 0;
         this.writeTime = 0;
         this.isCacheModified = false;
-        this.found = false;
+        this.keyFound = false;
     }
 
     public String getKey() {
@@ -48,12 +48,19 @@ public class Response {
     }
 
     public boolean keyFound() {
-        return found;
+        return keyFound;
     }
 
-    public void setFound(boolean found) {
-        this.found = found;
+    public void setKeyFound(boolean keyFound) {
+        this.keyFound = keyFound;
     }
 
 
+    public void setKeyFound() {
+        this.keyFound = true;
+    }
+
+    public void setCacheModified() {
+        isCacheModified = true;
+    }
 }

@@ -29,15 +29,25 @@ public class Cache {
         response.setReadTime(response.getReadTime() + readSpeed);
         return response;
     }
-
+    // TODO: Discuss responsibility. I think LRUStore is responsible for checking if the key already exists. setting response time should be work of LRUStore
     public Response write(String key, String value) {
+        Response readResponse = store.read(key);
+        readResponse.setReadTime(readResponse.getReadTime() + readSpeed);
+
+        if (readResponse.keyFound()) {
+            if (readResponse.getValue() == value) {
+                return readResponse;
+            }
+        }
+
         if (filled == capacity) {
             store.evict();
             filled = filled - 1;
         }
 
         Response response = store.write(key, value);
-        response.setReadTime(response.getReadTime() + readSpeed);
+        response.setReadTime(readResponse.getReadTime() + response.getReadTime());
+//        response.setReadTime(response.getReadTime() + readSpeed);
         if (response.isCacheModified) {
             response.setWriteTime(response.getWriteTime() + writeSpeed);
         }

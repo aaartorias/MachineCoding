@@ -5,7 +5,13 @@ import main.java.com.CachingService;
 public class TestCaching {
     public static void main(String[] args) {
 //        tCacheMissWithEmptyCache();
-//        tCacheWrite
+        tCachePopulateCacheCompletely();
+    }
+
+    private static void tCachePopulateCacheCompletely() {
+        CachingService cachingService = new CachingService();
+        cachingService.write("abc", "apple");
+        cachingService.printStats();
     }
 
     private static void tCacheMissWithEmptyCache() {
